@@ -1,7 +1,7 @@
 # xlr-plugin-plugin
 
 [![Build Status](https://travis-ci.org/xebialabs-community/xlr-plugin-plugin.svg?branch=master)](https://travis-ci.org/xebialabs-community/xlr-plugin-plugin)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/2dcea5da0eee4e0995158959a07e07c6)](https://www.codacy.com/app/erasmussen39/xlr-plugin-plugin?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=xebialabs-community/xlr-plugin-plugin&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/84bf4be141f841b3bd41b0aff0c71726)](https://www.codacy.com/manual/Navyasree-068/xlr-awesome-plugin?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Navyasree-068/xlr-awesome-plugin&amp;utm_campaign=Badge_Grade)
 [![Code Climate](https://codeclimate.com/github/xebialabs-community/xlr-plugin-plugin/badges/gpa.svg)](https://codeclimate.com/github/xebialabs-community/xlr-plugin-plugin)
 [![License: MIT][xlr-plugin-plugin-license-image] ][xlr-plugin-plugin-license-url]
 [![Github All Releases][xlr-plugin-plugin-downloads-image]]()
@@ -49,7 +49,9 @@ The following initial setup must be done locally on your XL Release instance bef
 7. Install the xlr-plugin-plugin to the `SERVER_HOME/plugins` directory of XL Release.
 8. Import the template into XL Release.  
 9. *(optional)* Open the template,  and fill in your user/environment specific values. 
-![User environmnet values](images/user-specific-values.png) 
+
+![User environmnet values](images/user-specific-values.png)
+ 
 ## Usage
 Utilize the template provided with the release and follow the instructions in the template to create your new plugin.
 
