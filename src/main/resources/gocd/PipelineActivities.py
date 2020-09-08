@@ -27,6 +27,8 @@ if not apiToken.strip():
 
 fullUrl = "{}/pipelines/{}/history".format(apiUrl, pipelineName)
 # parsedUrl = urllib.parse.urlsplit(apiUrl)
+# parsedUrl = urllib.parse.urlsplit(apiUrl)
+
 
 try:
     headers = urllib3.make_headers(basic_auth="{}:{}".format(apiUser, password)) if password.strip() else { "Authorization": "Bearer %s" % apiToken.strip()}
@@ -41,6 +43,9 @@ try:
     data = response.data.decode('utf-8')
 except urllib3.exceptions.HTTPError as error:
     print ("Reason: %s" % "HTTPError")
+    raise error
+except urllib3.exceptions.ConnectionError as error:
+    print("No internet connection available.")
     raise error
 except Exception as error:
     raise error
