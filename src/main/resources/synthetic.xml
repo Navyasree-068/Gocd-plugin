@@ -1,41 +1,39 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--
-    Copyright 2019 XEBIALABS
+    Copyright 2020 XEBIALABS
     Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
     The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
-<synthetic xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd"
-           xmlns="http://www.xebialabs.com/deployit/synthetic"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
-    <!-- Plugin Task Configurations -->
-    <type type="plugin.Task" extends="xlrelease.PythonScript" virtual="true">
-        <property name="scriptLocation" default="plugin/PluginTask.py" hidden="true"/>
-        <property name="output" category="output" kind="string" size="large" label="Output" description="The output returned from execution of the Plugin task."/>
+<synthetic xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.xebialabs.com/deployit/synthetic" xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
+
+    <type type="gocd.Server" extends="xlrelease.Configuration">
+        <property name="api" label="GoCD API URL" description="GoCD Server API URL"
+          required="true" hidden="false" default="https://go-server-url:8154/go/api"/>
+        <property name="userName" label="User name" description="Name to use in the notifications" required="true"/>
+        <property name="password" label="Password" description="Password used to authenticate for API calls" required="false"/>
+        <property name="apiToken" label="Api Token" description="Token used to authenticate for API calls" required="true"/>
+        <property name="userIcon" label="User icon" description="Icon to use in the notifications, it should be a icon emoji" required="false"/>
+        <property name="scriptLocation" hidden="true" default="gocd/ConnectionCheck.py"/>
+
     </type>
 
-    <type type="github.Task" extends="plugin.Task" virtual="true">
-        <property name="github_username" kind="string" category="input" label="GitHub Username" required="true"/>
-        <property name="github_api_token" kind="string" category="input" label="GitHub API Token" required="true" password="true"/>
-        <property name="create_in_github_organization" kind="boolean" category="input" label="Create In GitHub Organization" required="true"/>
-        <property name="github_organization" kind="string" category="input" label="GitHub Organization" required="false"/>
-        <property name="github_password" kind="string" category="input" label="GitHub Password" required="true" password="true"/>
+
+    <type type="gocd.Task" extends="xlrelease.PythonScript" virtual="true">
+        <!-- Plugin -->
+        <property name="iconLocation" hidden="true" default="gocd/logo.png"/>
+        <property name="taskColor" hidden="true" default="#EC8022"/>
+        <!-- Inputs -->
+        <property name="server" category="input" label="Server" description="The GoCD server definition to use" required="true" referenced-type="gocd.Server" kind="ci"/>
     </type>
 
-    <type type="plugin.CreateGitHubRepository" extends="github.Task" label="Create GitHub Repository">
-        <property name="github_repo_name" kind="string" category="input" label="GitHub Repo Name" required="true"/>
+    <type type="gocd.PipelineActivities" extends="gocd.Task">
+        <property name="pipelineName" category="input" label="Pipeline Name" description="Pipeline Activities" required="true"/>
     </type>
 
-    <type type="plugin.ConfigureGitHubRepository" extends="github.Task" label="Configure GitHub Repository">
-        <property name="github_repo_name" kind="string" category="input" label="GitHub Repo Name" required="true"/>
-        <property name="initial_version" kind="string" category="input" label="Initial Version" required="true"/>
-        <property name="integrate_with_hipchat" kind="boolean" category="input" label="Integrate With HipChat?" required="true"/>
-        <property name="hipchat_token" kind="string" category="input" label="HipChat Token" password="true" required="false"/>
-        <property name="hipchat_room_id" kind="string" category="input" label="HipChat Room ID" required="false"/>
-        <property name="git_path" kind="string" category="input" label="Git Path" required="true"/>
-        <property name="travis_path" kind="string" category="input" label="Travis Path" required="true"/>
-        <property name="gradle_path" kind="string" category="input" label="Gradle Path" required="true"/>
-        <property name="gradle_version" kind="string" category="input" label="Gradle Version" required="true"/>
+    <type type="gocd.PipelineActivityHistory" extends="gocd.Task">
+        <property name="pipelineName" category="input" label="Pipeline Name" description="Pipeline Activities" required="true"/>
     </type>
+
 </synthetic>
