@@ -27,7 +27,6 @@ if not apiToken.strip():
 
 fullUrl = "{}/pipelines/{}/history".format(apiUrl, pipelineName)
 # parsedUrl = urllib.parse.urlsplit(apiUrl)
-# parsedUrl = urllib.parse.urlsplit(apiUrl)
 
 
 try:
